@@ -3,31 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سلة المشتريات</title>
+    <title>سلة التسوق</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+
+    <!-- هيدر الصفحة أو القائمة العلوية يمكنك تركها كما هي لديك -->
     <header>
-        <div class="container">
-            <div class="header-content">
-                <h1 class="logo">Grocery Store</h1>
-                <nav>
-                    <a href="/">الرئيسية</a>
-                    <a href="/shop">المتجر</a>
-                    <a href="/offers">العروض</a>
-                    <a href="/contact">تواصل</a>
-                    <a href="/cart" class="cart-link active">السلة</a>
-                </nav>
-            </div>
-        </div>
+        <!-- كود النافبار الخاص بك هنا -->
     </header>
 
-    <main class="container" style="margin-top: 40px; text-align: center;">
-        <h2>سلة المشتريات</h2>
-        <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: inline-block; width: 100%; max-width: 500px;">
-            <p>سلتك فارغة حالياً 🛒</p>
-            <a href="/shop" class="btn" style="background: #2ecc71; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 15px;">ابدأ التسوق الآن</a>
-        </div>
+    <main class="container">
+        <h2>منتجات السلة</h2>
+        
+        <!-- هذا هو العنصر المهم الذي سيقوم الجافاسكريبت بعرض المنتجات داخله -->
+        <div id="cart-items"></div>
     </main>
+
+    <!-- هنا نضع كود الجافاسكريبت داخل وسم الـ script الصحيح -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // جلب المنتجات المحفوظة
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items'); 
+
+            if (cartItemsContainer) {
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = "<p>السلة فارغة حالياً.</p>";
+                } else {
+                    cartItemsContainer.innerHTML = ""; // تنظيف الحاوية
+                    
+                    // المرور على كل منتج وبناء عنصر له على الشاشة
+                    cart.forEach((item, index) => {
+                        const itemElement = document.createElement('div');
+                        itemElement.className = 'cart-item';
+                        itemElement.innerHTML = `
+                            <p>اسم المنتج: ${item.name} - السعر: ${item.price} ريال</p>
+                        `;
+                        cartItemsContainer.appendChild(itemElement);
+                    });
+                }
+            }
+        });
+    </script>
 </body>
 </html>
