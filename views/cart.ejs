@@ -4,26 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سلة التسوق</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-99B1R1VW6T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-99B1R1VW6T');
+</script>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 
-    <!-- هيدر الصفحة أو القائمة العلوية يمكنك تركها كما هي لديك -->
+   
     <header>
-        <!-- كود النافبار الخاص بك هنا -->
+       
     </header>
 
     <main class="container">
         <h2>منتجات السلة</h2>
         
-        <!-- هذا هو العنصر المهم الذي سيقوم الجافاسكريبت بعرض المنتجات داخله -->
+       
         <div id="cart-items"></div>
     </main>
 
-    <!-- هنا نضع كود الجافاسكريبت داخل وسم الـ script الصحيح -->
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // جلب المنتجات المحفوظة
+           
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             const cartItemsContainer = document.getElementById('cart-items'); 
 
@@ -31,9 +39,8 @@
                 if (cart.length === 0) {
                     cartItemsContainer.innerHTML = "<p>السلة فارغة حالياً.</p>";
                 } else {
-                    cartItemsContainer.innerHTML = ""; // تنظيف الحاوية
-                    
-                    // المرور على كل منتج وبناء عنصر له على الشاشة
+                    cartItemsContainer.innerHTML = ""; 
+                
                     cart.forEach((item, index) => {
                         const itemElement = document.createElement('div');
                         itemElement.className = 'cart-item';
