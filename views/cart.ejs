@@ -44,9 +44,8 @@
                     cart.forEach((item, index) => {
                         const itemElement = document.createElement('div');
                         itemElement.className = 'cart-item';
-                        itemElement.innerHTML = `
-                            <p>اسم المنتج: ${item.name} - السعر: ${item.price} ريال</p>
-                        `;
+                        itemElement.innerHTML = `<p>اسم المنتج: ${item.name} - السعر: ${item.price} ريال</p>`;
+                        
                         cartItemsContainer.appendChild(itemElement);
                     });
                 }
